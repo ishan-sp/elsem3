@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Savvy</title>
+    <link rel="stylesheet" href="../src/css/points.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Glacial+Indifference:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar-->
+    <nav class="navbar">
+        <ul class="nav-left">
+            <li class="menu-icon" id="hamburger">
+                <a href="#" id="menu-toggle">&#9776;</a> <!-- Menu icon (hamburger) -->
+            </li>
+            <li class="logo">
+                <a href="/home" class="nav-brand">Sea Savvy</a>
+            </li>
+        </ul>
+        <ul class="nav-right">
+            <!--<li><i class="fas fa-robot chatbot-icon" onclick="openChatbot()"></i></li>-->
+            <li>
+                <a href="#" onclick="openChatbot()"> 
+                    <img src="../images/chatbot.png" alt="Chatbot Icon" class="chatbot-icon">
+                </a>
+            </li>
+            <div id="chatbot-window" class="chatbot-container" style="display: none;"> <!-- Ensure this is hidden initially -->
+                <div class="chatbot-header">
+                    <h2>BlueBot</h2>
+                    <img src="chatbot_2.png" alt="Chatbot Icon" class="chatbot-icon">
+                    <i class="fas fa-times close-icon" onclick="closeChatbot()"></i> <!-- Close Icon -->
+                </div>
+                <div class="chatbot-body">
+                    <div class="suggested-prompts">
+                        <span class="prompt" onclick="selectPrompt('What is the deepest point in ocean?')">What is the deepest point in ocean?</span>
+                        <span class="prompt" onclick="selectPrompt('How do I change my username?')">How do I change my username?</span>
+                    </div>
+                    <div id="chat-messages" class="chat-messages">
+                        <!-- Chat messages will appear here -->
+                    </div>
+                </div>
+                <div class="chatbot-input-area">
+                    <input type="text" id="chatbox" placeholder="Type your prompt here..." oninput="checkInput()" />
+                    <button id="send-btn" onclick="sendMessage()" disabled>Send</button>                   
+                </div>
+            </div>
+            <li class="username-dropdown">
+                <div class="user-initial">I</div>
+                <a href="#" id="username-toggle">Username</a>
+                <div id="user-dropdown" class="dropdown-content">
+                    <a href="/points"><i class="fas fa-medal"></i> Points and Rewards</a>
+                    <a href="/profile"><i class="fas fa-user"></i> Profile</a>
+                    <a href="/settings"><i class="fas fa-cog"></i> Settings</a>
+                    <a href="/support"><i class="fas fa-question-circle"></i> Help Center</a>
+                    <a href="/logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                </div>
+            </li>
+        </ul>
+        <div id="dropdown-menu" class="dropdown-content">
+            <a href="#"><i class="fas fa-gamepad"></i>Sea Quest</a>
+            <a href="#"><i class="fas fa-book-open"></i>Sea Scholar</a>
+            <a href="#"><i class="fas fa-bullhorn"></i>Marine Monitor</a>
+        </div>
+    </nav>
+    <div class="profile-page">
+        <!-- Vertical Menu -->
+        <div class="vertical-menu">
+            <div class="menu-item selected ">
+                <i class="fas fa-medal"></i> Points & Rewards
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-user"></i> Profile
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-cog"></i> Settings
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-question-circle"></i> Help Centre
+            </div>
+            <div class="menu-item">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </div>
+        </div>
+        <div class="points-content2">
+            <div class="points content">
+                <!-- Greeting Section -->
+                <div class="greeting">
+                    <div>
+                        <h1 class="username">Hi <span class="dynamic-username">[User]</span></h1>
+                        <div class="streak-info">
+                            <span role="img" aria-label="fire emoji">🔥</span>
+                            <span><b class="dynamic-streak">[Week Streak]</b> week streak</span>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Points Section -->
+                <div class="points-container">
+                    <!-- Available Points -->
+                    <div class="point-box">
+                        <i class="fas fa-medal icon"></i>
+                        <p>Available points</p>
+                        <h2 class="dynamic-available-points">[Available Points]</h2>
+                    </div>
+        
+                    <!-- Level -->
+                    <div class="point-box">
+                        <i class="fas fa-star icon"></i>
+                        <p>Level</p>
+                        <h2 class="dynamic-level">[Level]</h2>
+                    </div>
+        
+                    <!-- Today's Points -->
+                    <div class="point-box">
+                        <i class="fas fa-coins icon"></i>
+                        <p>Today's points</p>
+                        <h2 class="dynamic-todays-points">[Today's Points]</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <div class="leaderboard-container">
+        <h2 class="leaderboard-heading">
+            <i class="fas fa-crown" style="margin-right: 8px;"></i>Leaderboard
+        </h2>
+    
+        <div class="leaderboard-header">
+            <span>#</span>
+            <span>Username <i class="fas fa-user"></i></span>
+            <span>Level <i class="fas fa-star"></i></span>
+            <span>Points <i class="fas fa-coins"></i></span>
+        </div>
+    
+        <!-- Dynamic rows will be inserted here -->
+        <div id="leaderboard-rows"></div>
+    </div>
+    
+    
+    <!-- Button to reveal the rest of the leaderboard -->
+    <button class="expand-btn" onclick="toggleLeaderboard()">Show More</button>    
+
+    <div class="progress-container">
+        <div class="progress-box">
+            <div class="progress-text">
+                <p><b>Get free access to AI-assisted fish classification</b></p>
+                <p>Earn 1000 points to redeem</p>
+            </div>
+            <div class="progress">
+                <div class="progress-bar"></div> <!-- Width will be set dynamically -->
+                <div class="progress-text">
+                    <p class="number"></p> <!-- Points text will be updated dynamically -->
+                </div>
+            </div>
+        </div>
+        <img src="../images/fish3.png" alt="Fish Classification" class="fish-image">
+    </div>
+    
+    <div class="box-container">
+        <div class="box-row">
+            <div class="box1">
+                <img src="../images/box1_2.png" alt="Flight Offer" class="offer-image">
+                <p class="offer-text">
+                    No platform fee on your next <span><i class="fas fa-plane"></i> flight</span> booking on <b>Make My Trip!</b><br>
+                    Earn <b>500</b> points to redeem.
+                </p>
+                <div class="p-box">
+                    <div class="p">
+                        <div class="p-bar" data-total="500"></div>
+                    </div>
+                    <p class="p-text"></p>
+                </div>
+            </div>
+            <div class="box2">
+                <img src="../images/box2_2.png" alt="Vacation World" class="offer-image">
+                <p class="offer-text">
+                    Unlock <b>Vacay Avatar</b><span><i class="fas fa-umbrella-beach"></i></span> in Sea Quest!<br> Earn <b>199</b> points to redeem.
+                </p>
+                <div class="p-box">
+                    <div class="p">
+                        <div class="p-bar" data-total="199"></div>
+                    </div>
+                    <p class="p-text"></p>
+                </div>
+            </div>
+            <div class="box3">
+                <img src="../images/box3_3.jpg" alt="Oceano-Crossword" class="offer-image">
+                <p class="offer-text">
+                    Time for some fun!<br>Solve today's <b>Oceano-Crossword</b> and earn <b>10</b> points.
+                    <button class="arrow-btn">
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+                </p>
+            </div>
+        </div>
+        <div class="box-row">
+            <div class="box4">
+                <img src="../images/tripadvisor.png" alt="Beach Offer" class="offer-image">
+                <p class="offer-text">
+                    Get <b>5%</b> off on <span>accommodation <i class="fas fa-bed"></i></span> for your next beach visit on <b>TripAdvisor!</b>
+                    Earn <b>650</b> points to redeem.
+                </p>
+                <div class="p-box">
+                    <div class="p">
+                        <div class="p-bar" data-total="650"></div>
+                    </div>
+                    <p class="p-text"></p>
+                </div>
+            </div>
+            <div class="box5">
+                <img src="../images/box5_2.jpg" alt="Sea Scholar Offer" class="offer-image">
+                <p class="offer-text">
+                    Unlock exclusive <span><b>Sea Scholar</b><i class="fas fa-book"></i></span> content!<br>
+                    Free access for <b>2</b> weeks<br>Enter level <b>8</b> to redeem.
+                </p>
+                <div class="p-box">
+                    <div class="p">
+                        <div class="p-bar" data-total="199"></div>
+                    </div>
+                    <p class="p-text"></p>
+                </div>
+            </div>
+            <div class="box6">
+                <img src="../images/box6_5.jpg" alt="Amazon Gift Card Offer" class="offer-image">
+                <p class="offer-text">
+                    <b>Limited time offer!</b><br>Redeem <b>700</b> points and get an <b>Amazon gift card </b><span><i class="fas fa-gift"></i></span> worth <b>Rs.299</b>.<br>Level <b>8</b> required.
+                </p>
+                <div class="p-box">
+                    <div class="p">
+                        <div class="p-bar" data-total="700"></div>
+                    </div>
+                    <p class="p-text"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <section class="about-us">
+        <div class="contact-info-container">
+            <a href="mailto:seasavvy@example.com" class="email-link">
+                <i class="fas fa-envelope"></i> seasavvy@gmail.com
+            </a>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+    
+    <script src="../src/js/points.js"></script>
+</body>

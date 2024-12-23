@@ -1,0 +1,1205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    overflow-x: hidden;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #000814;
+    padding: 15px 30px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.navbar .logo a{
+    color: #f2f2f7;
+    font-size: 60px;
+    font-weight: bold;
+    font-family: 'League Spartan', sans-serif; 
+    text-decoration: none;
+}
+.nav-left,
+.nav-right {
+    display: flex;
+    align-items: center;
+}
+.nav-right li a {
+    
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+}
+.menu-icon a {
+    font-size: 24px;
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 10px;
+}
+#dropdown-menu {
+    display: none;  /*Hidden initially */
+    position: fixed;
+    top: 85px;
+    left: 10px;
+    background-color: #000814;
+    min-width: 140px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    width:180px;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #eef0f8;
+    text-align: center;
+}
+
+#dropdown-menu a {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #ebeff2;
+    font-size: 18px;
+}
+#dropdown-menu a i {
+    margin-right: 8px; /* Adds space between the icon and the text */
+}
+
+#dropdown-menu a:hover {
+    background-color: #6ca5b7;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+li {
+    margin-right: 20px;
+}
+li.seaquest-dropdown .dropdown-content {
+    display: none;
+}
+
+li.seaquest-dropdown.active .dropdown-content {
+    display: block;
+}
+.username-dropdown {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+#user-dropdown {
+    display: none;
+    position: fixed;
+    top: 85px; /* Adjust to match the height of your navbar */
+    right: 10px;
+    background-color: #000814;
+    font-family: 'Source Sans Pro', sans-serif;
+    min-width: 180px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+    font-family: 'Source Sans Pro', sans-serif;
+    color: #eef0f8;
+    text-align: center;
+}
+.user-icon {
+    margin-right: 8px; /* Space between the icon and the username */
+    font-size: 1.2em; /* Adjust icon size as needed */
+    color: #f4efef; /* Color of the icon */
+}
+.user-initial {
+    width: 30px; /* Adjust size */
+    height: 30px; /* Adjust size */
+    background-color: #3498db; /* Circle background color */
+    color: white; /* Text color */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%; /* Makes it circular */
+    font-size: 15px; /* Font size */
+    font-weight: bold;
+    margin-right: 10px; /* Space between the circle and username */
+    text-transform: uppercase; /* Ensure the letter is uppercase */
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#user-dropdown a {
+    color: #ebeff2;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+#user-dropdown a:hover {
+    background-color: #6ca5b7;
+}
+.username-dropdown.active #user-dropdown {
+    display: block;
+}
+.chatbot-icon {
+    width: 50px; /* Adjust the size as needed */
+    height: 50px;
+    cursor: pointer;
+    transition: transform 0.3s ease; /* Add a smooth hover effect */
+}
+
+.chatbot-icon:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+}
+.chatbot-container {
+    position: fixed;
+    top: 0; /* Position the container at the top */
+    left: 0; /* Position the container at the left */
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 100vw; /* Full viewport width */
+    height: 100vh; /* Full viewport height */
+   
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: none; /* Hidden by default */
+    flex-direction: column;
+    z-index: 1000;
+    border-radius: 0; /* Optional: Remove border radius for full-screen */
+    
+    /* Optional: Ensure padding and borders are included in the total size */
+    box-sizing: border-box;
+    overflow: auto;
+
+    /* Hide scrollbar for IE, Edge */
+    -ms-overflow-style: none;
+
+    /* Hide scrollbar for Firefox */
+    scrollbar-width: none;
+}
+.chatbot-container::-webkit-scrollbar {
+    display: none;
+}
+.no-scroll {
+    overflow: hidden;
+}
+
+
+/* Chatbot Header */
+.chatbot-header {
+    background-color: #ccccd1;
+    color: white;
+    padding: 5px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    font-size: 26px;
+    font-family: 'Source Sans Pro', sans-serif;
+    
+}
+
+.chatbot-header h2 {
+    background: -webkit-linear-gradient(#1e7b75, #1d0781);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+    
+    font-family: 'League Spartan', sans-serif;
+    margin: 15px;
+}
+
+.close-icon {
+    font-size: 24px;
+    cursor: pointer;
+    margin-left: auto; 
+    margin-right: 15px;
+}
+
+/* Chat Body */
+.chatbot-body {
+    flex: 1;
+    padding: 10px;
+    overflow-y: auto;
+}
+
+.chat-messages {
+    height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Input Area */
+.chatbot-input-area {
+    display: flex;
+    padding: 5px;
+    border-top: 1px solid #ccc;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin: 10px;
+    align-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    
+}
+
+#chatbox {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    flex-wrap: wrap;
+    font-size: 16px;
+}
+.suggested-prompts {
+    display: flex;
+    margin-bottom: 10px; /* Space before the chat content */
+    flex-wrap: wrap; /* Allow prompts to wrap to the next line */
+    justify-content: space-between;
+    width: 100%; 
+    gap: 10px;
+    font-size: 18px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.suggested-prompts span {
+    background-color: #93b9c4;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    white-space: normal;
+    display: inline-block; /* Treat each as inline elements */
+    flex: 1; /* Ensure each prompt takes up equal space */
+    text-align: center;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.suggested-prompts span:hover {
+    background-color: #dcd8d8;
+    transform: scale(1.04);
+}
+
+.suggested-prompts span:active {
+    background-color: #d0d0d0;
+}
+.user-message { /*for sent messages*/
+    background-color: #638ab4;
+    color: white;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 10px;
+    align-self: flex-end; /* Align the message to the right */
+    max-width: 70%;
+    word-wrap: break-word;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+#send-btn:disabled {
+    background-color: #c6c2c2;
+    cursor: not-allowed;
+}
+#send-btn {
+    color: white;
+    cursor: pointer;
+    padding: 10px 15px;
+    border: none;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+#send-btn:enabled {
+    background-color: #3b5ea4;
+    cursor: pointer;
+}
+
+#send-btn:hover:enabled {
+    background-color: #193d62;
+}
+
+/*responsiveness*/
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column; /* Stack the navbar elements vertically */
+        padding: 10px 20px;
+        
+        justify-content: center;
+        width: 100%;
+        overflow-x: hidden;
+    }
+
+    .nav-left,
+    .nav-right {
+        width: 100%; /* Full width for both left and right nav sections */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        max-width: 100%; 
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .nav-left {
+        justify-content: center;
+        margin-bottom: 10px; /* Add space between the nav-left and nav-right sections */
+    }
+
+    .nav-left .logo {
+        font-size: 30px; /* Smaller font size for the Sea Savvy logo */
+    }
+
+    /* Stack username dropdown and chatbot horizontally under the Sea Savvy */
+    .nav-right {
+        flex-direction: row; /* Stack horizontally */
+        justify-content: center; /* Space between the elements */
+        width: 100%; /* Ensure the nav-right takes full width */
+    }
+
+    .username-dropdown {
+        
+        text-align: left; /* Align dropdown to the left */
+    }
+
+    .chatbot-icon {
+        width: 40px; /* Smaller icon size */
+        height: 40px;
+    }
+
+    #dropdown-menu {
+        width: auto;
+    }
+
+    /* Adjust dropdown and chatbot icon positioning */
+    .user-initial {
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+}
+
+@media (max-width: 768px) {
+    .chatbot-container {
+        width: 100vw;  /* Full viewport width */
+        height: 100vh;  /* Full viewport height */
+        
+    }
+
+    .chatbot-header {
+        font-size: 22px;
+        padding: 10px;
+    }
+
+    .chatbot-header h2 {
+        font-size: 40px;  /* Adjust size of the chatbot header */
+    }
+    .chatbot-icon {
+        width: 40px; /* Smaller icon size */
+        height: 40px;
+    }
+
+    .chatbot-body {
+        padding: 10px;
+    }
+
+    .chatbot-input-area {
+        flex-wrap: nowrap;  /* Prevent wrapping input and button */
+    }
+
+    #chatbox {
+        width: calc(100% - 70px);  /* Reduce width to accommodate button */
+    }
+
+    #send-btn {
+        padding: 8px 10px;
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .chatbot-header h2 {
+        font-size: 18px;
+    }
+
+    .chatbot-body {
+        font-size: 14px;
+    }
+
+    .suggested-prompts span {
+        font-size: 14px;
+        padding: 5px 10px;
+    }
+
+    #chatbox {
+        font-size: 14px;
+    }
+}
+@media (max-width: 768px) {
+    #user-dropdown {
+        right: 0;  /* Align to right */
+        width: auto;  /* Full width on mobile */
+        transform: none;  /* Remove the center alignment */
+    }
+
+    .user-initial {
+        width: 25px;  /* Smaller size */
+        height: 25px;
+        font-size: 12px;
+    }
+
+    #user-dropdown a {
+        padding: 10px 0;
+        font-size: 16px;
+    }
+}
+.about-us {
+    padding: 15px 30px; 
+    background-color: #669bab; 
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%; 
+    margin: 0 auto; 
+    box-sizing: border-box; 
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.social-media {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px; 
+    /*margin-top: 20px; 
+    width: 100%;*/
+}
+
+.social-icon {
+    font-size: 30px; 
+    color: #fcfcfc; 
+    margin: 0 10px; 
+    text-decoration: none;
+}
+@media (max-width: 768px) {
+    .social-media {
+        justify-content: center; /* Center the icons for mobile */
+        margin-top: 10px;
+    }
+
+    .social-icon {
+        font-size: 25px; /* Decrease the size for smaller screens */
+    }
+}
+
+.social-icon:hover {
+    color: #9ee0f5; 
+}
+
+.social-icon i {
+    transition: color 0.3s ease;
+}
+
+.contact-info {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    margin-top: 30px; 
+    font-size: 18px; 
+}
+.contact-info-container {
+    display: flex;
+    align-items: center; 
+    justify-content: space-between;
+    flex-wrap: wrap;
+    width:100%;
+    gap: 20px;
+}
+@media (max-width: 768px) {
+    .contact-info-container {
+        flex-direction: column; /* Stack the email and icons vertically on small screens */
+        align-items: center;
+        text-align: center;
+    }
+}
+.email-link {
+    display: flex;
+    align-items: center; 
+    color: #fcfcfc;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: 'Source Sans Pro', sans-serif;
+
+    font-size: 20px;
+}
+
+.email-link i {
+    margin-right: 10px; 
+    font-size: 30px;
+}
+
+.email-link:hover {
+    color: #9ee0f5;
+}
+
+/*profile.html*/
+.profile-page {
+    display: flex; 
+    flex-direction: row;
+    height: auto;
+    margin-top: 80px;
+    width: 100%; 
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Vertical menu styling */
+.vertical-menu {
+    width: 270px;
+    background-color: rgb(254, 253, 253);
+    display: flex;
+    flex-direction: column;
+    font-family: 'Source Sans Pro', sans-serif; 
+    height: fit-content; 
+    padding-top: 30px;
+    padding-bottom: 30px;  
+}
+
+/* Individual menu item styling */
+.menu-item {
+    display: flex;
+    
+    
+    padding: 10px;
+    color: rgb(125, 120, 120);
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-family: 'Source Sans Pro', sans-serif;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 20px;
+    
+}
+
+/* Icon styling */
+.menu-item i {
+    margin-right: 15px; 
+    font-size: 20px;
+}
+
+/* Hover effect for menu items */
+.menu-item:hover {
+    background-color: #6ca5b7;
+    color: #fafcff;
+}
+
+/* Highlight the selected menu item */
+.menu-item.selected {
+    background-color: #6ca5b7; 
+    font-weight: bold;
+    color: #eff1f3;
+}
+@media (max-width: 768px) {
+    /* Profile Page layout for small screens */
+    .profile-page {
+        flex-direction: column; /* Stack vertically on smaller screens */
+        height: auto; /* Remove fixed height */
+        padding: 20px;
+        margin-top: 20px;
+        padding-bottom: 0px;
+    }
+
+    /* Vertical menu adjustments for small screens */
+    .vertical-menu {
+        width: 100%; /* Full width on smaller screens */
+        max-width: none;
+        padding-left: 0; /* Remove unnecessary padding */
+        padding-top: 10px;
+        padding-bottom: 10px;  
+        margin-bottom: 10px; /* Add some margin below the menu */
+    }
+
+    /* Adjust menu items */
+    .menu-item {
+        
+        justify-content: center; /* Center the content */
+    }
+}
+.points-content2{
+    font-family: 'Source Sans Pro', sans-serif;
+    width: 100%;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    height: fit-content;
+    
+}
+.points-content {
+    background: linear-gradient(to right, #e0f7fa, #f3e5f5);    
+}
+
+.greeting {
+    display: flex; /* This will align items horizontally */
+    align-items: center;
+    text-align: left; /* Adjust if necessary for alignment */
+    max-width: 60%;
+    justify-content: space-between;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 10px;
+}
+.greeting div {
+    margin-right: 20px; /* Adds space between greeting and streak info */
+}
+
+.streak-info {
+    display: flex; /* This will align the emoji and text horizontally */
+    align-items: center; /* Vertically center the emoji and text */
+    font-size: 1.4rem;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.username {
+    font-size: 2em; /* Adjust size for the "Hi Medha" */
+    margin-bottom: 0; /* Remove any bottom margin */
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.level-info {
+    font-size: 1.2em; /* Adjust size for the "Level 1" */
+    margin-top: 5px; /* Adds a bit of space between "Hi Medha" and "Level 1" */
+    color: #666; /* Optional: change color */
+    display: flex;
+    align-items: center; /* Aligns the info icon nicely */
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.points-container {
+    display: flex;
+    justify-content: space-around; /* Centers content horizontally */
+    align-items: center; /* If you want vertical alignment as well */
+    padding: 20px 0;
+    font-family: 'Source Sans Pro', sans-serif;
+    background-color: white;
+}
+
+.point-box {
+    width: 30%;
+    background-color: rgb(249, 246, 246);
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0px 4px 10px rgba(16, 16, 16, 0.1);
+    height: auto;
+    max-height: fit-content;
+    display: flex;
+    flex-direction: column; /* Ensure contents stack vertically */
+    justify-content: center; /* Align items vertically */
+    margin: 0 10px;
+}
+
+.point-box i.icon {
+    font-size: 3rem;
+    color:#6ca5b7;
+    margin-bottom: 10px;
+}
+
+.point-box h2 {
+    font-size: 2rem;
+    margin: 10px 0;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.point-box p {
+    margin-bottom: 10px;
+}
+
+.point-box a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Ensure proper spacing in small screens */
+@media (max-width: 768px) {
+    .profile-page {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .points-content {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .points-container {
+        flex-direction: column;
+    }
+
+    .point-box {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+    .vertical-menu {
+        width: 100%; /* Full width on smaller screens */
+        max-width: none;
+        padding-left: 0; /* Remove unnecessary padding */
+        
+        margin-bottom: 10px; /* Add some margin below the menu */
+    }
+}
+@media (max-width: 768px) {
+    .greeting {
+        flex-direction: row; /* Change to row layout for larger screens */
+        justify-content: space-between; /* Space items apart */
+        max-width: 100%;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+
+    .greeting h1,
+    .greeting p,
+    .streak-info {
+        font-size: 1.5em; /* Adjust font size for smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    .greeting {
+        flex-direction: column; /* Stack items vertically on small screens */
+        align-items:center; /* Center items */
+        max-width: 100%;
+    }
+
+    .greeting h1 {
+        font-size: 1.5em; /* Further adjust for very small screens */
+    }
+
+    .greeting p,
+    .streak-info {
+        font-size: 1.3em; /* Further adjust for very small screens */
+        text-align: center;
+        display: block;
+    }
+    
+}
+.progress-container {
+    display: flex;
+    align-items: center; /* Align items vertically */
+    justify-content: space-between; /* Space items horizontally */
+    border: none;
+    font-family: 'Source Sans Pro', sans-serif;
+    padding: 16px; /* Padding inside the box */
+    background: linear-gradient(to right, #8edae4, #5a2960); 
+    
+    margin: 25px;
+    margin-top: 10px; /* Space above the box */
+}
+
+.progress-box {
+    flex: 1; /* Take available space */
+    padding-right: 40px; /* Space between text and image */
+    padding-left: 40px;
+    width: fit-content;
+    height: fit-content;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.progress {
+    background-color: #131212; /* Background color of progress bar */
+    border-radius: 8px; /* Rounded corners */
+    height: 10px; /* Height of the progress bar */
+    width: 70%; /* Full width */
+    align-items: center;
+    margin-top: 20px;
+    font-family: 'Source Sans Pro', sans-serif;
+    justify-content: center;
+    
+}
+
+.progress-bar {
+    background-color: #4caf50; /* Color of the progress */
+    height: 100%; /* Fill the height of the container */
+    border-radius: 8px; /* Rounded corners */
+}
+
+.progress-text {
+    margin-top: 8px; /* Space above the text */
+    font-size: 1.5em;
+    width: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.number{
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+    font-weight: bold
+}
+
+.fish-image {
+    width: 40%; /* Adjust width as needed */
+    height:auto; /* Maintain aspect ratio */
+    padding: 10px;
+    margin-right: 40px;
+}
+
+@media (max-width: 480px) {
+    .progress-container {
+        padding: 8px;
+        margin: 5px;
+    }
+
+    .progress-box {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .progress {
+        width: 90%;
+        margin-top: 10px;
+    }
+
+    .progress-text {
+        font-size: 0.7em; /* Further reduce text size */
+        margin-top: 4px;
+    }
+    .number{
+        font-size: 0.9em;
+    }
+
+    .fish-image {
+        width: 50%; /* Adjust image for smallest screens */
+        margin-right: 0px;
+    }
+}
+.box-container {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 0; /* Adjust the spacing between rows and other sections */
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+/* Row of boxes */
+.box-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around; /* Space boxes evenly */
+    margin-bottom: 15px; /* Adjust the space between the two rows */
+    
+}
+
+/* Individual box */
+
+.box1 {
+    background: linear-gradient(to right, #e7f2f4, #f2e7f4); 
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 8px; /* Rounded corners */
+    width: 27%; /* Each box takes about 1/3 of the row */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    text-align: center; /* Center the content inside the box */
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.box2 {
+    background: linear-gradient(to right, #c6f7e9, #c1e6d5); 
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 8px; /* Rounded corners */
+    width: 27%; /* Each box takes about 1/3 of the row */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    text-align: center; /* Center the content inside the box */
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.box3 {
+    background: linear-gradient(to right, #e7f2f4, #f2e7f4); 
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 8px; /* Rounded corners */
+    width: 27%; /* Each box takes about 1/3 of the row */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    text-align: center; /* Center the content inside the box */
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.box4 {
+    background: linear-gradient(to right, #c6f7e9, #c1e6d5); 
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 8px; /* Rounded corners */
+    width: 27%; /* Each box takes about 1/3 of the row */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    text-align: center; /* Center the content inside the box */
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.box5 {
+    background: linear-gradient(to right, #e7f2f4, #f2e7f4);
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 8px; /* Rounded corners */
+    width: 27%; /* Each box takes about 1/3 of the row */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    text-align: center; /* Center the content inside the box */
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.box6 {
+    background: linear-gradient(to right, #c6f7e9, #c1e6d5); 
+    border: 1px solid #ccc; /* Add border */
+    border-radius: 8px; /* Rounded corners */
+    width: 27%; /* Each box takes about 1/3 of the row */
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Optional: add shadow */
+    text-align: center; /* Center the content inside the box */
+    font-size: 16px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.box1:hover,.box2:hover,.box3:hover,.box4:hover,.box5:hover,.box6:hover {
+    background-color: #e0e0e0; /* Change background color on hover */
+    border-color: #999; /* Change border color on hover */
+    transform: scale(1.05);
+}
+/* Optional: Hover effect for the boxes */
+
+.offer-image {
+    width: 80%; /* Full width of the box */
+    height: auto; /* Maintain the aspect ratio */
+    margin-bottom: 10px; /* Space between image and text */
+    border-radius: 50%;
+}
+
+/* Style for the text in the box */
+.offer-text {
+    font-size: 18px;
+    line-height: 1.5;
+    color: #333;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+/* Icon next to the word "flight" */
+.offer-text i {
+    margin-left: 5px; /* Small space between text and icon */
+    color: #656262; /* Adjust the icon color */
+    font-size: 1.2em; /* Size of the icon */
+}
+.arrow-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.arrow-btn i {
+    font-size: 1.5em; /* Size of the arrow */
+    color: #ff6347; /* Color of the arrow */
+}
+/* Responsive Styles */
+@media screen and (max-width: 768px) {
+    .box-row {
+        flex-wrap: wrap;
+        
+        justify-content: space-between;
+    }
+
+    .box1, .box2, .box3, .box4, .box5, .box6 {
+        width: 30%; /* Each box takes about half the row width */
+        margin-bottom: 10px;
+    }
+}
+
+/* For very small screens (less than 480px): 1 box per row */
+@media screen and (max-width: 480px) {
+    .box1, .box2, .box3, .box4, .box5, .box6 {
+        width: 100%;
+        margin-bottom: 15px;
+    }
+}
+.p-box {
+    margin-top: 10px;
+}
+
+.p{
+    background-color: #c4c5cd; /* Light gray background for the progress bar */
+    border-radius: 8px;
+    height: 10px;
+    width: 80%; /* Full width of the box */
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.p-bar {
+    background-color: #308558; /* Green for progress fill */
+    height: 100%;
+    border-radius: 8px;
+}
+
+.p-text {
+    margin-top: 10px;
+    font-size: 1.0em;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+
+/*leaderboard*/
+.leaderboard-container {
+    margin-top: 10px;
+    width: 60%;
+    max-width: 1200px; 
+    border: 1px solid #ccc;
+    padding: 15px;
+    background: linear-gradient(to right, #b4f0ed, #a0ccc0); 
+    
+    border-radius: 5px;
+    text-align: left;
+    margin-left: auto; /* These two lines will center it */
+    margin-right: auto;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.leaderboard-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(14, 10, 10);
+    gap: 10px;
+    padding: 10px;
+    font-family: 'Source Sans Pro', sans-serif;
+    text-align: center;
+}
+.hideable {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'Source Sans Pro', sans-serif;
+    gap: 10px;
+    padding: 10px;
+    color: white;
+    text-align: center;
+}
+.current {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #aeb0c5;
+    text-align: center;
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.leaderboard-row.top3 {
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.leaderboard-row.dots span {
+    text-align: center;
+}
+
+.leaderboard-row span {
+    text-align: center;
+}
+/* Medal styles */
+.gold {
+    color: #FFD700; /* Gold color */
+}
+
+.silver {
+    color: #C0C0C0; /* Silver color */
+}
+
+.bronze {
+    color: #cd7f32; /* Bronze color */
+}
+
+.expand-btn {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #304d7f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.expand-btn:hover {
+    background-color: #3a5760;
+    transform: scale(1.02);
+}
+
+/* Initially hide rows after the top 3 */
+
+.leaderboard-heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center;
+    color: #0f0f0d;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+/* Column headers */
+.leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    font-weight: bold;
+    background-color: #307f7f;
+    text-align: center;
+    font-size: 1.2em;
+    color: #fbfcfc;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+.leaderboard-header i {
+    margin-left: 5px; /* Space between text and icon */
+    font-size: 0.8em; /* Smaller size for the icon */
+    vertical-align: middle; /* Align icon with text */
+}
+.leaderboard-header span, .leaderboard-row span {
+    flex: 1; /* Make all spans take equal width */
+    text-align: center; /* Center text in each column */
+}
+
+@media (max-width: 768px) {
+    .leaderboard-container {
+        width: 90%;  /* Make it wider on small screens */
+        
+    }
+
+    .leaderboard-header span, .leaderboard-row span {
+        font-size: 14px;  /* Reduce font size on small screens */
+    }
+}
+
+@media (max-width: 480px) {
+    
+
+    .leaderboard-header span, .leaderboard-row span {
+        font-size: 12px;  /* Further reduce font size */
+    }
+}
+.leaderboard-dots {
+    display: flex;
+    flex-direction: column; /* Arrange dots vertically */
+    align-items:center; /* Center the dots horizontally */
+    margin: 10px 0; /* Add some spacing around the dots */
+    font-size: 24px; /* Adjust the size of the dots */
+    grid-column: 1 / -1;
+    line-height: 16px; /* Adjust spacing between dots */
+}

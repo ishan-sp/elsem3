@@ -174,7 +174,6 @@ setInterval(showSlides, 9000);
 async function fetchAndDisplayCourses() {
     try {
         const response = await fetch('sea-scholar/api/courses');
-        alert(`${!response.ok}`);
         if (!response.ok) {
             throw new Error('Failed to fetch courses');
         }

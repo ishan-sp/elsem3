@@ -51,7 +51,7 @@
                 <div class="user-initial"><%= userFound.displayName[0] %></div>
                 <a href="#" id="username-toggle"><%= userFound.displayName %></a>
                 <div id="user-dropdown" class="dropdown-content">
-                    <a href="/rewards"><i class="fas fa-medal"></i> Points and Rewards</a>
+                    <a href="/points"><i class="fas fa-medal"></i> Points and Rewards</a>
                     <a href="/profile"><i class="fas fa-user"></i> Profile</a>
                     <a href="/settings"><i class="fas fa-cog"></i> Settings</a>
                     <a href="/support"><i class="fas fa-question-circle"></i> Help Center</a>
@@ -130,7 +130,7 @@
         </div>
     </div>
 
-    <div class="sea-quest-section">     
+    <div class="sea-quest-section">
         <div class="two-column-section">
             <div class="left-column">
                 <h2>Marine Monitor</h2>
@@ -138,15 +138,15 @@
                 Introducing <b>Marine Monitor</b>, your go-to source for real-time updates on ocean conditions and safety alerts.<br>
                 Stay informed with the latest news, weather forecasts, and alerts about storms, tsunamis, and other marine events.
                 With Marine Monitor, you can navigate the ocean confidently, ensuring you’re always prepared for whatever lies ahead.
-                <br><br>Click the button below to open Marine Monitor</p>
-                <button class="start-sea-quest" action="/marine-monitor" method="get">Open Marine Monitor</button>
+                <br><br>
+                <a href="/marine-monitor" class="start-sea-quest">Open Marine Monitor</a>
             </div>
             <div class="right-column">
                 <img src="../images/game.jpeg" alt="Sea Quest Image" class="sea-quest-image">
-                <!-- Center aligned button in the right column -->
             </div>
         </div>
     </div>
+    
 
     <section class="about-us">
         <div class="contact-info-container">
