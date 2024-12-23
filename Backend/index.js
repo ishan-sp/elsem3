@@ -10,6 +10,8 @@ import loginRouter from "./routes/login.js";
 import homeRouter from "./routes/home.js";
 import profileRouter from "./routes/profile.js";
 import eduRouter from "./routes/seascholar.js";
+import pointsRouter from "./routes/points.js";
+import getTimedPoints from "./middleware/updateLastActivity.js";
 import {
     GoogleGenerativeAI,
     HarmCategory,
@@ -37,7 +39,7 @@ const logFile = path.join(logDirectory, 'access.log');
 fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory);
 const accessLogStream = fs.createWriteStream(logFile, { flags: 'a' });
 
-const apiKey = process.env.GEMINI_API_KEY;
+const apiKey = "AIzaSyAd5-mkAlBHbmtJd6otDjqjBwMtE9CoLcw";
 const genAI = new GoogleGenerativeAI(apiKey);
 
 const model = genAI.getGenerativeModel({
@@ -105,6 +107,7 @@ app.use(express.static(path.join(__dirname, "../Frontend")));
 
 app.use(morgan('combined', { stream: accessLogStream }));
 app.use(bodyParser.json());
+app.use(getTimedPoints);
 
 
 
@@ -130,6 +133,13 @@ app.get('/logout', (req, res) => {
   });
 });
 app.use("/sea-scholar", eduRouter);
+app.use("/points", (req, res)=> {
+  res.sendFile(path.join(__dirname, "../Frontend/public/points.html"))
+});
+
+app.get("/marine-monitor", (req, res) => {
+  res.sendFile(path.join(__dirname, "../Frontend/public/weather.html"))
+})
 
 app.post("/message", (req, res) => {
     const qr = req.body;
