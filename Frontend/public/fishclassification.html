@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Savvy - Marine Life Classifier</title>
+    <link rel="stylesheet" href="../src/css/fishclassification.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@teachablemachine/image@latest/dist/teachablemachine-image.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="../src/js/fishclassification.js" defer></script> 
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <a href="/home">Sea Savvy</a>
+        </div>
+    </div>
+
+    <div class="landing" id="home">
+        <div class="overlay"></div>
+        <div class="overlay-content">
+            <h1>Sea Savvy: Marine Life Classifier</h1>
+            <p>Discover and Identify Marine Species with AI</p>
+            <button type="button" class="start-button" onclick="init()">Start Classification</button>
+            <div class="file-upload">
+                <input type="file" id="file-input" accept="image/*" />
+            </div>
+            <div id="label-container"></div>
+        </div>
+    </div>
+</body>
+<footer class="site-footer" id="about">
+    <div class="footer-content">
+        <div class="footer-section about">
+            <h2>About Sea Savvy</h2>
+            <p>Sea Savvy is an advanced marine life classification platform powered by cutting-edge AI technology. Our mission is to help marine enthusiasts, researchers, and students easily identify and learn about diverse marine species.</p>
+        </div>
+        <div class="footer-section contact">
+            <h2>Contact Us</h2>
+            <ul class="contact-info">
+                <li>
+                    <i class="fas fa-map-marker-alt"></i> 
+                    R V College of Engineering
+                </li>
+                <li>
+                    <i class="fas fa-envelope"></i> 
+                    seasavvy@gmail.com
+                </li>
+                <li>
+                    <i class="fas fa-phone"></i> 
+                    +91 63640 72956
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2024 Sea Savvy. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/" class="social-icon"><i class="fab fa-facebook"></i></a>
+            <a href="https://x.com/" class="social-icon"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com/" class="social-icon"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/feed/" class="social-icon"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </div>
+</footer>
+</html>

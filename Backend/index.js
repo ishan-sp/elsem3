@@ -141,6 +141,10 @@ app.get("/marine-monitor", (req, res) => {
   res.sendFile(path.join(__dirname, "../Frontend/public/weather.html"))
 })
 
+app.get("/fishclassification", (req,res) => {
+  res.sendFile(path.join(__dirname,"../Frontend/public/fishclassification.html"))
+})
+
 app.post("/message", (req, res) => {
     const qr = req.body;
     console.log("The req.body received is:", qr);  // This should now properly log the parsed JSON object
