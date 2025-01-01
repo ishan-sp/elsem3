@@ -1,5 +1,4 @@
 const MODEL_URL = "https://teachablemachine.withgoogle.com/models/cd43TeA5z/";
-
 let model, labelContainer, maxPredictions;
 let modelReady = false; // Track if the model is ready
 

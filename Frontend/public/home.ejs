@@ -14,7 +14,7 @@
     <nav class="navbar">
         <ul class="nav-left">
             <li class="menu-icon" id="hamburger">
-                <a href="#" id="menu-toggle">&#9776;</a>
+                <a href="#" id="menu-toggle">&#9776;</a> <!-- Menu icon (hamburger) -->
             </li>
             <li class="logo">
                 <a href="/" class="nav-brand">Sea Savvy</a>
@@ -22,10 +22,10 @@
         </ul>
         <ul class="nav-right">
             <!--<li><i class="fas fa-robot chatbot-icon" onclick="openChatbot()"></i></li>-->
+            <a href="/fishclassification">
+                <i class="fa-solid fa-fish"></i>
+            </a>
             <li>
-                <a href="/fishclassification">
-                    <i class="fa-solid fa-fish"></i>
-                </a>
                 <a href="#" onclick="openChatbot()"> 
                     <img src="../images/chatbot.png" alt="Chatbot Icon" class="chatbot-icon">
                 </a>
@@ -63,7 +63,7 @@
             </li>
         </ul>
         <div id="dropdown-menu" class="dropdown-content">
-            <a href="/sea-quest"><i class="fas fa-gamepad"></i> Sea Quest</a>
+            
             <a href="/sea-scholar"><i class="fas fa-book-open"></i> Sea Scholar</a>
             <a href="/marine-monitor"><i class="fas fa-bullhorn"></i> Marine Monitor</a>
         </div>
@@ -102,16 +102,15 @@
     <div class="sea-quest-section">     
         <div class="two-column-section">
             <div class="left-column">
-                <h2>Sea Quest</h2>
-                <p class="tagline">Dive deep into Oceanic fun!</p>
-                <p>Discover the ocean’s secrets with our engaging game <b>Sea Quest</b> that brings real data to life!<br>It's as educational as it is entertaining.
-                This decision-driven experience helps students construct explanations, reason effectively, and become self-directed learners involving marine science and ocean literacy.</p>
-                <p>Earn points, unlock achievements, and challenge your friends in this engaging and educational underwater adventure.<br>
-                <br>The game can be played in the browser with the button below.</p>
-                <button class="start-sea-quest" action="/sea-quest" method="get">Launch Sea Quest</button>
+                <h2>Fin Finder</h2>
+                <p class="tagline">Unveil the Wonders of Marine Life with AI Image classification</p>
+                <p>Fin Finder lets you upload an image of a fish and harness the power of AI to identify its species in seconds.<br></p>
+                <p>his seamless image classification process provides accurate results, helping you explore and understand marine biodiversity effortlessly. Dive into the world of marine discovery with just one click!<br>
+                <br>Go to fin Finder with the button below.</p>
+                <button class="start-sea-quest" action="/sea-quest" method="get">Launch Fin Finder</button>
             </div>
             <div class="right-column">
-                <img src="../images/game.jpeg" alt="Sea Quest Image" class="sea-quest-image">                
+                <img src="../images/finfinder[1].jpg" alt="Sea Quest Image" class="sea-quest-image">                
             </div>
         </div>
     </div>
@@ -127,7 +126,7 @@
                 <button class="start-sea-quest" action="/sea-scholar" method="get">Go to Sea Scholar</button>
             </div>
             <div class="right-column">
-                <img src="../images/game.jpeg" alt="Sea Quest Image" class="sea-quest-image">
+                <img src="../images/scholar[1].png" alt="Sea Quest Image" class="sea-quest-image">
                 <!-- Center aligned button in the right column -->
             </div>
         </div>
@@ -145,7 +144,7 @@
                 <a href="/marine-monitor" class="start-sea-quest">Open Marine Monitor</a>
             </div>
             <div class="right-column">
-                <img src="../images/game.jpeg" alt="Sea Quest Image" class="sea-quest-image">
+                <img src="../images/marine[1].png" alt="Sea Quest Image" class="sea-quest-image">
             </div>
         </div>
     </div>
