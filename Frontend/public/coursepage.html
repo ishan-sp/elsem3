@@ -1,0 +1,156 @@
+
+<!DOCTYPE html>
+<html lang="en"></html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Savvy</title>
+    <link rel="stylesheet" href="../src/css/coursepage.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Glacial+Indifference:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar-->
+    <nav class="navbar">
+        <ul class="nav-left">
+            <li class="logo">
+                <a href="/home" class="nav-brand">Sea Savvy</a>
+            </li>
+        </ul>
+    </nav>
+    <!-- Second Navigation Bar -->
+
+    <nav class="second-navbar">
+        <ul class="nav-left">
+        <li class="menu-icon" id="hamburger">
+            <a href="#" id="menu-toggle">&#9776;</a> <!-- Menu icon (hamburger) -->
+            <span class="second-logo">Sea Scholar</span>
+        </li>
+        <li>
+            <div class="logo-and-search">
+            
+                <div class="search-bar">
+                    <input type="text" placeholder="Search for anything">
+                    <button type="submit"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </li>
+        </ul>
+        <div id="dropdown-menu" class="dropdown-content">
+            <a href="#"><i class="fas fa-gamepad"></i>Sea Quest</a>
+            <a href="#"><i class="fas fa-bullhorn"></i>Marine Monitor</a>
+        </div>
+        
+
+        <ul class="nav-links">
+            <li class="dropdown">
+                <a href="#" class="dropbtn">Categories</a>
+                <ul class="dropdown-content" id="categoryMenu">
+                  <!-- Categories and courses will be injected here -->
+                </ul>
+              </li>              
+            
+            <li><a href="#">My Learning</a></li>
+        </ul>
+        <ul class="nav-right">
+            <!--<li><i class="fas fa-robot chatbot-icon" onclick="openChatbot()"></i></li>-->
+            <li>
+                <a href="#" onclick="openChatbot()"> 
+                    <img src="../images/chatbot.png" alt="Chatbot Icon" class="chatbot-icon">
+                </a>
+            </li>
+            <div id="chatbot-window" class="chatbot-container" style="display: none;"> <!-- Ensure this is hidden initially -->
+                <div class="chatbot-header">
+                    <h2>BlueBot</h2>
+                    <img src="../images/chatbot.png" alt="Chatbot Icon" class="chatbot-icon">
+                    <i class="fas fa-times close-icon" onclick="closeChatbot()"></i> <!-- Close Icon -->
+                </div>
+                <div class="chatbot-body">
+                    <div class="suggested-prompts">
+                        <span class="prompt" onclick="selectPrompt('What is the deepest point in ocean?')">What is the deepest point in ocean?</span>
+                        <span class="prompt" onclick="selectPrompt('How do I change my username?')">How do I change my username?</span>
+                    </div>
+                    <div id="chat-messages" class="chat-messages">
+                        <!-- Chat messages will appear here -->
+                    </div>
+                </div>
+                <div class="chatbot-input-area">
+                    <input type="text" id="chatbox" placeholder="Type your prompt here..." oninput="checkInput()" />
+                    <button id="send-btn" onclick="sendMessage()" disabled>Send</button>                   
+                </div>
+            </div>
+            <li class="username-dropdown">
+                <div class="user-initial">I</div>
+                <a href="#" id="username-toggle">Username</a>
+                <div id="user-dropdown" class="dropdown-content">
+                    <a href="#"><i class="fas fa-medal" action="/points" method="get"></i> Points and Rewards</a> <!-- Gem icon -->
+                    <a href="#"><i class="fas fa-user" action="/profile" method="get"></i> Profile</a> <!-- Profile icon -->
+                    <a href="#"><i class="fas fa-cog" action="/settings" method="get"></i> Settings</a> <!-- Settings icon -->
+                    <a href="#"><i class="fas fa-question-circle" action="/help" method="get" ></i> Help Center</a> <!-- Help icon -->
+                    <a href="#"><i class="fas fa-sign-out-alt" action="/logout" method="get"></i> Logout</a> <!-- Logout icon -->
+                </div>
+            </li>
+        </ul>
+    </nav> 
+    
+    <div class="course-container">
+        <div class="top-section">
+            <div class="text-content">
+                <h1 id="course-title"></h1>
+                <p><strong id="enrollment-count"></strong> already enrolled</p>
+                <button id="enroll-button">Enroll Now</button>
+            </div>
+            <div class="enroll-section">
+                <div class="image-container">
+                    <img id="course-image" alt="Course Image">
+             </div>
+            </div>
+        </div>
+        <div class="course-details">
+            <div class="course-details-box">
+                <div class="detail-item">
+                    <span id="modules-count"></span> Articles
+                </div>
+                <div class="detail-item">
+                    <span id="rating-value"></span><i id="star-icon" class="fas fa-star"></i>
+                </div>
+                <div class="detail-item">
+                    Level<span id="course-level"></span>
+                </div>
+                <div class="detail-item">
+                    Approx<span id="course-duration"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="course-outline">
+        <h2>What you'll learn</h2>
+        <div id="learning-points-container">
+            <!-- This is where the points will be dynamically added -->
+        </div>
+    </div>
+    <div class="topics-covered-section">
+        <h2>Articles in this Course</h2>
+        <ul id="topics-covered-list">
+            <!-- Points will be added dynamically here -->
+        </ul>
+    </div>
+    
+    <section class="about-us">
+        <div class="contact-info-container">
+            <a href="mailto:seasavvy@example.com" class="email-link">
+                <i class="fas fa-envelope"></i> seasavvy@gmail.com
+            </a>
+            <div class="social-media">
+                <a href="https://facebook.com" target="_blank" class="social-icon"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://twitter.com" target="_blank" class="social-icon"><i class="fab fa-twitter"></i></a>
+                <a href="https://instagram.com" target="_blank" class="social-icon"><i class="fab fa-instagram"></i></a>
+                <a href="https://linkedin.com" target="_blank" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </section>
+    <script src="../src/js/coursepage.js"></script>
+</body>
+

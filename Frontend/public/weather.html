@@ -1,38 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Weather App</title>
-  <link rel="stylesheet" href="../src/css/weather.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sea Weather Explorer</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="marine-weather-icon.png">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@400;700&family=Source+Sans+Pro:wght@300;400;600&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="../src/css/weather.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="logo">
-      <a href="/home">Sea Savvy</a>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/home">
+                <i class="fas fa-water"></i> Marine Monitor
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="/home">Home</a>
+            <a href="../public/maps.html">Forecast</a>
+        </div>
+        <div class="nav-actions">
+            <a href="#" class="btn">Get Location</a>
+        </div>
+    </nav>
+    <div class="app-wrap">
+        <header>
+            <input 
+                type="text" 
+                autocomplete="off" 
+                class="search-box" 
+                placeholder="Search for a location..."
+            >
+        </header>
+
+        <main>
+            <section class="location">
+                <div class="city">Loading...</div>
+                <div class="date">Date</div>
+            </section>
+
+            <section class="current">
+                <div class="temp">0<span>°c</span></div>
+                <div class="weather">-</div>
+                <img class="weather-icon" src="" alt="Weather Icon">
+                <div class="hi-low">-</div>
+                <div class="humidity">Humidity: -</div>
+                <div class="wind-speed">Wind: -</div>
+                <div class="pressure">Pressure: -</div>
+                <div class="visibility">Visibility: -</div>
+                <div class="weather-description">Description: -</div>
+            </section>
+        </main>
     </div>
-  </nav>
-  <div class="app-wrap">
-    <header>
-      <input type="text" autocomplete="off" class="search-box" placeholder="Search for a city..." />
-    </header>
-    <main>
-      <section class="location">
-        <div class="city">Bengaluru, India</div>
-        <div class="date">Sunday 22 December 2024</div>
-      </section>
-      <div class="current">
-        <div class="temp">27<span>°c</span></div>
-        <div class="weather">Partly cloudy</div>
-        <div class="hi-low">20°c / 27°c</div>
-        <div class="humidity">55%</div>
-        <div class="wind-speed"></div> 
-        <div class="pressure"></div> 
-        <div class="visibility"></div> 
-        <div class="weather-description"></div>
-      </div>
-    </main>
-  </div>
-  <script src="../src/js/weather.js"></script>
+    <footer class="site-footer">
+        <div class="footer-content">
+            <div class="footer-section about">
+                <h2>About Sea Savvy</h2>
+                <p>Sea Savvy is an advanced marine life classification platform powered by cutting-edge AI technology. Our mission is to help marine enthusiasts, researchers, and students easily identify and learn about diverse marine species.</p>
+            </div>
+            <div class="footer-section contact">
+                <h2>Contact</h2>
+                <ul>
+                    <li><i class="fas fa-envelope"></i> josephrmathew.ai23@rvce.edu.in</li>
+                    <li><i class="fas fa-phone"></i> +91 84311 87843</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2024 Sea Weather Explorer. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../src/js/weather.js"></script>
 </body>
 </html>

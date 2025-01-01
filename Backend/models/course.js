@@ -23,9 +23,13 @@ const courseSchema = new mongoose.Schema({
         min: 0,
         max: 5,
     },
-    img: {
-        type: String,
-        required: true,
+    enrolled: {
+        type: Number,  // The number of users enrolled
+        default: 0,  // Default to 0 if not specified
+    },
+    learnings: {
+        type: [Object],  // Array of JSON objects representing the learning points
+        default: [],  // Default to an empty array if not specified
     },
 });
 
