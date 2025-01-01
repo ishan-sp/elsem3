@@ -6,7 +6,7 @@ const api = {
 const searchbox = document.querySelector('.search-box');
 searchbox.addEventListener('keypress', setQuery);
 
-const locationButton = document.querySelector('.nav-actions .btn');
+const locationButton = document.querySelector('.nav-actions .btn-89');
 locationButton.addEventListener('click', getLocation);
 
 function setQuery(evt) {
